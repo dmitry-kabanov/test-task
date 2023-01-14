@@ -1,0 +1,5 @@
+__pycache__
+
+# Environment files.
+autoenv-enter.zsh
+autoenv-leave.zsh

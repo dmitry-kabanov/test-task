@@ -4,6 +4,7 @@ on: [push, pull_request]
 
 jobs:
   install_dependencies:
+    runs-on: ubuntu-latest
     steps:
       - run: $CONDA/bin/conda env update --file environment.yml --name base
   lint:

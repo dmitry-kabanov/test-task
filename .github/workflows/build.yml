@@ -3,15 +3,26 @@ name: build
 on: [push, pull_request]
 
 jobs:
-  install_dependencies:
+  qa-linux:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.10"]
+
     steps:
-      - run: $CONDA/bin/conda env update --file environment.yml --name base
-  lint:
-    needs: install_dependencies
-    steps:
-      - run: flake8 src tests
-  test:
-    needs: lint
-    steps:
-      - run: pytest
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Add conda to PATH
+        run: echo $CONDA/bin >> $GITHUB_PATH
+      - name: Setup conda environment
+        run: |
+          conda install python=${{ matrix.python-version }} --yes --name base
+          conda env update --file environment.yml --quiet --name base
+          type python
+          type pip
+      - name: Install development dependencies
+        run: pip install -r requirements-dev.txt
+      - name: Lint Python source code
+        run: flake8 .
+      - name: Format with black formatter
+        run: black .

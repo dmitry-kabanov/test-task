@@ -1,12 +1,7 @@
-name: umuenster-task
-
 channels:
   - defaults
 
 dependencies:
-  - python=3.10
+  - python
   - numpy
   - cython
-  - pytest
-  - pip:
-    - pre-commit

@@ -1,0 +1,16 @@
+name: build
+
+on: [push, pull_request]
+
+jobs:
+  install_dependencies:
+    steps:
+      - run: $CONDA/bin/conda env update --file environment.yml --name base
+  lint:
+    needs: install_dependencies
+    steps:
+      - run: flake8 src tests
+  test:
+    needs: lint
+    steps:
+      - run: pytest

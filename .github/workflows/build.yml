@@ -26,3 +26,5 @@ jobs:
         run: flake8 .
       - name: Format with black formatter
         run: black .
+      - name: Run tests
+        run: pytest

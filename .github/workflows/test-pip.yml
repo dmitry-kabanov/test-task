@@ -1,9 +1,9 @@
-name: build
+name: Test with pip environment
 
 on: [push, pull_request]
 
 jobs:
-  qa-linux:
+  qa-linux-pip:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -12,14 +12,10 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-      - name: Add conda to PATH
-        run: echo $CONDA/bin >> $GITHUB_PATH
-      - name: Setup conda environment
-        run: |
-          conda install python=${{ matrix.python-version }} --yes --name base
-          conda env update --file environment.yml --quiet --name base
-          type python
-          type pip
+      - name: Setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
       - name: Install development dependencies
         run: pip install -r requirements-dev.txt
       - name: Lint Python source code

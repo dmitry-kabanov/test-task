@@ -162,6 +162,14 @@ cython_debug/
 # --------------------
 # Additional artifacts
 
+# Cython-generated files
+src/optimize/functionals.c
+src/optimize/functionals.cpp
+src/optimize/functionals.html
+
 # Environment files.
 autoenv-enter.zsh
 autoenv-leave.zsh
+
+# Pyright settings
+pyrightconfig.json

@@ -1,8 +1,6 @@
 name: Test with conda environment
 
-on:
-  - push
-  - pull_request
+on: [push, pull_request]
 
 jobs:
   qa-linux-conda:

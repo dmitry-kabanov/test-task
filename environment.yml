@@ -6,3 +6,8 @@ dependencies:
   - pip
   - numpy
   - cython
+  - pytest
+  - pip:
+    - black
+    - flake8
+    - mypy

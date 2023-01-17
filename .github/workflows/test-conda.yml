@@ -1,0 +1,31 @@
+name: Test with conda environment
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  qa-linux-conda:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.10"]
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Setup conda environment
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          auto-activate-base: true
+          activate-environment: ""
+          environment-file: environment.yml
+          python-version: ${{ matrix.python-version }}
+        run: |
+          conda info
+          type python
+          type pip
+      - name: Install editable package
+        run: pip install -e .
+      - name: Run tests
+        run: pytest

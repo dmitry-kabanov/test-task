@@ -106,5 +106,5 @@ with the initial guess:
     xmin = opt.minimize(parabola_nd, x0)
     ```
 
-4. To check the reason for termination of the iterative minimization process,
-use property `opt.reason` of the optimizer.
+4. To check the status of the iterative minimization process,
+use property `opt.status` of the optimizer.

@@ -1,4 +1,4 @@
-name: Test with pip environment
+name: Test with pip
 
 on: [push, pull_request]
 

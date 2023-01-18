@@ -22,33 +22,45 @@ This is a normal installation (does not work as the package is not on PyPI):
 
 ### Installation using conda
 
-#. Create `conda` environment:
+1. Create `conda` environment:
 
+    ```shell
     conda env create -f environment.yml -n myenv
     conda activate myenv
+    ```
 
-#. Install editable version with development dependencies:
+2. Install editable version with development dependencies:
 
+    ```shell
     pip install -e ".[dev]"  # quotes are needed for zsh
+    ```
 
-#. To check that installed development version works, run tests:
+3. To check that installed development version works, run tests:
 
+    ```shell
     pytest
+    ```
 
 ### Installation using venv and pip
 
-#. Create virtual environment:
+1. Create virtual environment:
 
+    ```shell
     python -m venv venv
     source venv/bin/activate
+    ```
 
-#. Installed editable version with development dependencies:
+2. Installed editable version with development dependencies:
 
+    ```shell
     pip install -e ".[dev]"  # quotes are needed for zsh
+    ```
 
-#. To check that installed development version works, run tests:
+3. To check that installed development version works, run tests:
 
+    ```shell
     pytest
+    ```
 
 ### (Optional) Install pre-commit hook
 
@@ -71,22 +83,28 @@ and can be imported with
 
     from optimize.functionals import parabola_nd
 
-#. Create an optimizer (for example, steepest descent optimizer),
+1. Create an optimizer (for example, steepest descent optimizer),
 passing parameters that control its operations:
 
+    ```shell
     from optimize import SteepestDescent
     opt = SteepestDescent()
+    ```
 
 Here, we used default values of the optimizer.
 
-#. Create an initial guess for optimization:
+2. Create an initial guess for optimization:
 
+    ```shell
     x0 = [1.0, 2.0, 3.0]
+    ```
 
-#. To minimize the functional `parabola_nd` pass it to the optimizer along
+3. To minimize the functional `parabola_nd` pass it to the optimizer along
 with the initial guess:
 
+    ```shell
     xmin = opt.minimize(parabola_nd, x0)
+    ```
 
-#. To check the reason for termination of the iterative minimization process,
+4. To check the reason for termination of the iterative minimization process,
 use property `opt.reason` of the optimizer.
